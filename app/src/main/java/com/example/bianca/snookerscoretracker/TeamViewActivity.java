@@ -26,19 +26,19 @@ public class TeamViewActivity extends AppCompatActivity {
         t_one_view.setText(teams.get(0).name);
 
         TextView p_one_view = findViewById(R.id.p_one_name);
-        p_one_view.setText(teams.get(0).player1.name);
+        p_one_view.setText(teams.get(0).players.get(0).name);
 
         TextView p_two_view = findViewById(R.id.p_two_name);
-        p_two_view.setText(teams.get(0).player2.name);
+        p_two_view.setText(teams.get(0).players.get(1).name);
 
         TextView t_two_view = findViewById(R.id.team_two_name);
         t_two_view.setText(teams.get(1).name);
 
         TextView p_three_view = findViewById(R.id.p_three_name);
-        p_three_view.setText(teams.get(1).player1.name);
+        p_three_view.setText(teams.get(1).players.get(0).name);
 
         TextView p_four_name = findViewById(R.id.p_four_name);
-        p_four_name.setText(teams.get(1).player2.name);
+        p_four_name.setText(teams.get(1).players.get(1).name);
     }
 
     public void onStartGameClick(View view){

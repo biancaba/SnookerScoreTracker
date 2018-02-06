@@ -3,10 +3,15 @@ package com.example.bianca.snookerscoretracker;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Pair;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 
 public class GameActivity extends AppCompatActivity {
 
@@ -18,7 +23,13 @@ public class GameActivity extends AppCompatActivity {
     private static final int PINK_BALL_VALUE = 6;
     private static final int BLACK_BALL_VALUE = 7;
 
+    private static final int FOUL = 4;
+
     public List<Team> teams;
+    public List<Ball> balls = new ArrayList<>(7);
+
+    public Queue<Pair<Integer, Integer>> activeTurns = new LinkedList<>();
+    public int activeBall;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,8 +39,34 @@ public class GameActivity extends AppCompatActivity {
         Intent intent = getIntent();
         teams = (List<Team>) intent.getSerializableExtra("game_information");
 
+        teams.get(0).id = R.id.team_one_score;
+        teams.get(0).players.get(0).id = R.id.player_one_score;
+        teams.get(0).players.get(1).id = R.id.player_two_score;
+
+        teams.get(1).id = R.id.team_two_score;
+        teams.get(1).players.get(0).id = R.id.player_three_score;
+        teams.get(1).players.get(1).id = R.id.player_four_score;
+
         putNames();
         putScores();
+
+        for(int i=0; i<teams.size(); i++){
+            activeTurns.add(new Pair<>(i, 0));
+        }
+
+        balls.add(new Ball(R.id.red_ball, 1, 15, false, R.color.red));
+        balls.add(new Ball(R.id.yellow_ball,2, 1, true, R.color.yellow));
+        balls.add(new Ball(R.id.green_ball, 3,1, true, R.color.green));
+        balls.add(new Ball(R.id.brown_ball, 4,1, true, R.color.brown));
+        balls.add(new Ball(R.id.blue_ball, 5,1, true, R.color.blue));
+        balls.add(new Ball(R.id.pink_ball, 6,1, true, R.color.pink));
+        balls.add(new Ball(R.id.black_ball, 7,1, true, R.color.black));
+
+        for(int i = 0; i < balls.size(); i++){
+            Button ballBtn = findViewById(balls.get(i).viewID);
+            ballBtn.setText(String.valueOf(balls.get(i).quantity));
+        }
+        activeBall = 0;
     }
 
     private void putNames(){
@@ -37,19 +74,19 @@ public class GameActivity extends AppCompatActivity {
         t_one_view.setText(teams.get(0).name);
 
         TextView p_one_view = findViewById(R.id.player_one_name);
-        p_one_view.setText(teams.get(0).player1.name);
+        p_one_view.setText(teams.get(0).players.get(0).name);
 
         TextView p_two_view = findViewById(R.id.player_two_name);
-        p_two_view.setText(teams.get(0).player2.name);
+        p_two_view.setText(teams.get(0).players.get(1).name);
 
         TextView t_two_view = findViewById(R.id.team_two);
         t_two_view.setText(teams.get(1).name);
 
         TextView p_three_view = findViewById(R.id.player_three_name);
-        p_three_view.setText(teams.get(1).player1.name);
+        p_three_view.setText(teams.get(1).players.get(0).name);
 
         TextView p_four_view = findViewById(R.id.player_four_name);
-        p_four_view.setText(teams.get(1).player2.name);
+        p_four_view.setText(teams.get(1).players.get(1).name);
     }
 
     private void putScores(){
@@ -57,44 +94,147 @@ public class GameActivity extends AppCompatActivity {
         t_one_view.setText(String.valueOf(teams.get(0).score));
 
         TextView p_one_view = findViewById(R.id.player_one_score);
-        p_one_view.setText(String.valueOf(teams.get(0).player1.score));
+        p_one_view.setText(String.valueOf(teams.get(0).players.get(0).score));
 
         TextView p_two_view = findViewById(R.id.player_two_score);
-        p_two_view.setText(String.valueOf(teams.get(0).player2.score));
+        p_two_view.setText(String.valueOf(teams.get(0).players.get(1).score));
 
         TextView t_two_view = findViewById(R.id.team_two_score);
         t_two_view.setText(String.valueOf(teams.get(1).score));
 
         TextView p_three_view = findViewById(R.id.player_three_score);
-        p_three_view.setText(String.valueOf(teams.get(1).player1.score));
+        p_three_view.setText(String.valueOf(teams.get(1).players.get(0).score));
 
         TextView p_four_view = findViewById(R.id.player_four_score);
-        p_four_view.setText(String.valueOf(teams.get(1).player2.score));
+        p_four_view.setText(String.valueOf(teams.get(1).players.get(1).score));
     }
 
-    public void onBallClick(View view){
+    public void onRedBallClick(View view){
+        int value = RED_BALL_VALUE;
+        changeScore(value);
+
+        balls.get(0).quantity--;
+        int redQuantity = balls.get(0).quantity;
+
+        if(redQuantity == 0){
+            activeBall++;
+            disableOneBall(0);
+            enableOneBall(activeBall);
+        }
+        else
+            enableBallButtons(false, true);
+    }
+
+    public void onColouredBallClick(View view){
 
         int value = 0;
-
-        switch (view.getId()){
-            case R.id.red_ball:
-                value = RED_BALL_VALUE;break;
-            case R.id.yellow_ball:
-                value = YELLOW_BALL_VALUE;break;
-            case R.id.green_ball:
-                value = GREEN_BALL_VALUE;break;
-            case R.id.brown_ball:
-                value = BROWN_BALL_VALUE;break;
-            case R.id.blue_ball:
-                value = BLUE_BALL_VALUE;break;
-            case R.id.pink_ball:
-                value = PINK_BALL_VALUE;break;
-            case R.id.black_ball:
-                value = BLACK_BALL_VALUE;break;
+        switch (activeBall){
+            case 0:
+                switch (view.getId()) {
+                    case R.id.yellow_ball:
+                        value = YELLOW_BALL_VALUE;
+                        break;
+                    case R.id.green_ball:
+                        value = GREEN_BALL_VALUE;
+                        break;
+                    case R.id.brown_ball:
+                        value = BROWN_BALL_VALUE;
+                        break;
+                    case R.id.blue_ball:
+                        value = BLUE_BALL_VALUE;
+                        break;
+                    case R.id.pink_ball:
+                        value = PINK_BALL_VALUE;
+                        break;
+                    case R.id.black_ball:
+                        value = BLACK_BALL_VALUE;
+                        break;
+                }
+                changeScore(value);
+                enableBallButtons(true, false);
+                break;
+            default:
+                changeScore(activeBall+1);
+                balls.get(activeBall).quantity--;
+                disableOneBall(activeBall);
+                activeBall++;
+                if(activeBall < 7)
+                    enableOneBall(activeBall);
         }
+    }
 
-        teams.get(0).player1.increaseScore(value);
-        TextView player = findViewById(R.id.player_one_score);
-        player.setText(String.valueOf(teams.get(0).player1.score));
+    private void disableOneBall(int index){
+        Button btn;
+        btn = findViewById(balls.get(index).viewID);
+        btn.setEnabled(false);
+        btn.setText(String.valueOf(balls.get(index).quantity));
+        btn.setAlpha(0.5f);
+    }
+
+    private void enableOneBall(int index){
+        Button btn;
+        btn = findViewById(balls.get(index).viewID);
+        btn.setEnabled(true);
+        btn.setText(String.valueOf(balls.get(index).quantity));
+        btn.setAlpha(1f);
+    }
+
+    private void enableBallButtons(boolean redBallValue, boolean colouredBallValue){
+        Button btn;
+        btn = findViewById(balls.get(0).viewID);
+        btn.setEnabled(redBallValue);
+        btn.setText(String.valueOf(balls.get(0).quantity));
+        if(redBallValue)
+            btn.setAlpha(1f);
+        else
+            btn.setAlpha(0.5f);
+
+        for(int i = 1; i < balls.size(); i++){
+            btn = findViewById(balls.get(i).viewID);
+            btn.setEnabled(!redBallValue);
+            btn.setText(String.valueOf(balls.get(i).quantity));
+            if(colouredBallValue)
+                btn.setAlpha(1f);
+            else
+                btn.setAlpha(0.5f);
+        }
+    }
+
+    private void changeScore(int value){
+        Team activeTeam = teams.get(activeTurns.peek().first);
+        Player activePlayer = activeTeam.players.get(activeTurns.peek().second);
+        activeTeam.increaseScore(value);
+        activePlayer.increaseScore(value);
+
+        TextView activeTeamView = findViewById(activeTeam.id);
+        activeTeamView.setText(String.valueOf(activeTeam.score));
+        TextView activePlayerView = findViewById(activePlayer.id);
+        activePlayerView.setText(String.valueOf(activePlayer.score));
+    }
+
+    public void onNextPlayerClick(View view){
+        Pair<Integer, Integer> activePair = activeTurns.remove();
+        int team = activePair.first;
+        int player = activePair.second;
+
+        player++;
+        if (player == teams.get(team).players.size())
+            player = 0;
+
+        activeTurns.add(new Pair<>(team, player));
+    }
+
+    public void onFoulClick(View view){
+        Team activeTeam = teams.get(activeTurns.peek().first);
+
+        for(int i = 0; i < teams.size(); i++){
+            Team t = teams.get(i);
+            if(t.id != activeTeam.id){
+                t.increaseScore(FOUL);
+                TextView text = findViewById(t.id);
+                text.setText(String.valueOf(t.score));
+            }
+        }
+        onNextPlayerClick(null);
     }
 }

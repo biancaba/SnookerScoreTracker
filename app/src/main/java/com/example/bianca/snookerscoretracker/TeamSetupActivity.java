@@ -34,7 +34,9 @@ public class TeamSetupActivity extends AppCompatActivity {
         EditText p1 = findViewById(R.id.player_one);
         EditText p2 = findViewById(R.id.player_two);
 
-        teamOne = new Team(t1.getText().toString(), p1.getText().toString(),p2.getText().toString());
+        teamOne = new Team(t1.getText().toString());
+        teamOne.addPlayer(new Player(p1.getText().toString()));
+        teamOne.addPlayer(new Player(p2.getText().toString()));
 
         t1.setText(R.string.team_2);
         p1.setText(R.string.player_1);
@@ -46,7 +48,9 @@ public class TeamSetupActivity extends AppCompatActivity {
         EditText p1 = findViewById(R.id.player_one);
         EditText p2 = findViewById(R.id.player_two);
 
-        teamTwo = new Team(t1.getText().toString(),p1.getText().toString(), p2.getText().toString());
+        teamTwo = new Team(t1.getText().toString());
+        teamTwo.addPlayer(new Player(p1.getText().toString()));
+        teamTwo.addPlayer(new Player(p2.getText().toString()));
 
         teams.add(teamOne);
         teams.add(teamTwo);

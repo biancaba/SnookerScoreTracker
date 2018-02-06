@@ -10,10 +10,12 @@ public class Player implements Serializable{
 
     public String name;
     public int score;
+    public int id;
 
     public Player(String name){
         this.name = name;
         this.score = 0;
+        this.id = 0;
     }
 
     public void increaseScore(int value){
