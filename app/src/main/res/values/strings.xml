@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">SnookerScoreTracker</string>
+    <string name="title">Snooker Score Tracker</string>
+
+    <string name="single_game">2 PLayers</string>
+    <string name="team_game">4 PLayers</string>
+
+    <string name="team_1">Team 1 name</string>
+    <string name="team_2">Team 2 name</string>
+    <string name="player_1">Player 1</string>
+    <string name="player_2">Player 2</string>
+
+    <string name="next_team">Next team</string>
+    <string name="finish_setup">Finish</string>
+    <string name="start_game">Start game</string>
+
+</resources>
