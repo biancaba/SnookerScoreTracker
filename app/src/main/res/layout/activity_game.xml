@@ -11,13 +11,14 @@
     <GridLayout
         android:id="@+id/gridLayout"
         android:layout_width="0dp"
-        android:layout_height="163dp"
-        android:layout_marginBottom="100dp"
+        android:layout_height="134dp"
+        android:layout_marginBottom="257dp"
         android:layout_marginEnd="45dp"
         android:layout_marginStart="45dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/gridLayout2"
+        android:layout_marginTop="64dp"
+        app:layout_constraintBottom_toTopOf="@+id/gridLayout5"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -126,10 +127,9 @@
         android:id="@+id/gridLayout2"
         android:layout_width="288dp"
         android:layout_height="117dp"
-        android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="80dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/gridLayout">
@@ -140,7 +140,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:background="@color/red"
-            android:onClick="onBallClick"/>
+            android:onClick="onBallClick" />
 
         <Button
             android:id="@+id/yellow_ball"
@@ -150,7 +150,7 @@
             android:layout_margin="5dp"
             android:layout_row="0"
             android:background="@color/yellow"
-            android:onClick="onBallClick"/>
+            android:onClick="onBallClick" />
 
         <Button
             android:id="@+id/green_ball"
@@ -160,7 +160,7 @@
             android:layout_margin="5dp"
             android:layout_row="0"
             android:background="@color/green"
-            android:onClick="onBallClick"/>
+            android:onClick="onBallClick" />
 
         <Button
             android:id="@+id/brown_ball"
@@ -170,7 +170,7 @@
             android:layout_margin="5dp"
             android:layout_row="0"
             android:background="@color/brown"
-            android:onClick="onBallClick"/>
+            android:onClick="onBallClick" />
 
         <Button
             android:id="@+id/blue_ball"
@@ -180,7 +180,7 @@
             android:layout_margin="5dp"
             android:layout_row="1"
             android:background="@color/blue"
-            android:onClick="onBallClick"/>
+            android:onClick="onBallClick" />
 
         <Button
             android:id="@+id/pink_ball"
@@ -190,7 +190,7 @@
             android:layout_margin="5dp"
             android:layout_row="1"
             android:background="@color/pink"
-            android:onClick="onBallClick"/>
+            android:onClick="onBallClick" />
 
         <Button
             android:id="@+id/black_ball"
@@ -200,7 +200,52 @@
             android:layout_margin="5dp"
             android:layout_row="1"
             android:background="@color/black"
-            android:onClick="onBallClick"/>
+            android:onClick="onBallClick" />
+    </GridLayout>
+
+    <GridLayout
+        android:id="@+id/gridLayout5"
+        android:layout_width="313dp"
+        android:layout_height="106dp"
+        android:layout_marginBottom="61dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/gridLayout">
+
+        <Button
+            android:id="@+id/end_frame"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="1"
+            android:layout_row="1"
+            android:text="@string/end_frame" />
+
+        <Button
+            android:id="@+id/foul"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="0"
+            android:layout_row="1"
+            android:text="@string/foul" />
+
+        <Button
+            android:id="@+id/end_game"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="2"
+            android:layout_row="1"
+            android:text="@string/exit_game" />
+
+        <Button
+            android:id="@+id/next_player"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="1"
+            android:layout_row="0"
+            android:text="@string/next_player" />
     </GridLayout>
 
 </android.support.constraint.ConstraintLayout>
