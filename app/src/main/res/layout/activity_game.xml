@@ -237,10 +237,13 @@
 
         <Button
             android:id="@+id/end_frame"
+            android:layout_gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_column="1"
             android:layout_row="1"
+            android:enabled="false"
+            android:onClick="onEndFrameClick"
             android:text="@string/end_frame" />
 
         <Button
@@ -258,15 +261,17 @@
             android:layout_height="wrap_content"
             android:layout_column="2"
             android:layout_row="1"
+            android:onClick="onExitGameClick"
             android:text="@string/exit_game" />
 
         <Button
             android:id="@+id/next_player"
-            android:onClick="onNextPlayerClick"
+            android:layout_gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_column="1"
             android:layout_row="0"
+            android:onClick="onNextPlayerClick"
             android:text="@string/next_player" />
     </GridLayout>
 

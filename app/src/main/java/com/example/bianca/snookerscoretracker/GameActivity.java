@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -160,6 +161,14 @@ public class GameActivity extends AppCompatActivity {
                 activeBall++;
                 if(activeBall < 7)
                     enableOneBall(activeBall);
+                else{
+                    Button btn = findViewById(R.id.end_frame);
+                    btn.setEnabled(true);
+                    btn = findViewById(R.id.foul);
+                    btn.setEnabled(false);
+                    btn = findViewById(R.id.next_player);
+                    btn.setEnabled(false);
+                }
         }
     }
 
@@ -236,5 +245,16 @@ public class GameActivity extends AppCompatActivity {
             }
         }
         onNextPlayerClick(null);
+    }
+
+    public void onExitGameClick(View view){
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
+
+    public void onEndFrameClick(View view){
+        Intent intent = new Intent(this, ResultsActivity.class);
+        intent.putExtra("frame_results", (Serializable) teams);
+        startActivity(intent);
     }
 }

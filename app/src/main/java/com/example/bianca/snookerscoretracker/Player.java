@@ -18,6 +18,12 @@ public class Player implements Serializable{
         this.id = 0;
     }
 
+    public Player(String name, int score){
+        this.name = name;
+        this.score = score;
+        this.id = 0;
+    }
+
     public void increaseScore(int value){
         if(value >= 0)
             this.score += value;

@@ -15,8 +15,9 @@
     <string name="start_game">Start game</string>
 
     <string name="next_player">NEXT PLAYER</string>
-    <string name="end_frame">END FRAME</string>
-    <string name="exit_game">EXIT GAME</string>
     <string name="foul">FOUL</string>
+    <string name="end_frame">END FRAME</string>
+    <string name="new_frame">NEW FRAME</string>
+    <string name="exit_game">EXIT GAME</string>
 
 </resources>

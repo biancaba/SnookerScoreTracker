@@ -30,7 +30,7 @@ public class TeamSetupActivity extends AppCompatActivity {
         Button finishSetup = findViewById(R.id.finish_setup);
         finishSetup.setVisibility(View.VISIBLE);
 
-        EditText t1 = findViewById(R.id.team_name);
+        EditText t1 = findViewById(R.id.win_team);
         EditText p1 = findViewById(R.id.player_one);
         EditText p2 = findViewById(R.id.player_two);
 
@@ -44,7 +44,7 @@ public class TeamSetupActivity extends AppCompatActivity {
     }
 
     public void onFinishSetupClick(View view) {
-        EditText t1 = findViewById(R.id.team_name);
+        EditText t1 = findViewById(R.id.win_team);
         EditText p1 = findViewById(R.id.player_one);
         EditText p2 = findViewById(R.id.player_two);
 

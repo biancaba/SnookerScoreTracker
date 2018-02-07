@@ -7,7 +7,7 @@
     tools:context="com.example.bianca.snookerscoretracker.TeamSetupActivity">
 
     <EditText
-        android:id="@+id/team_name"
+        android:id="@+id/win_team"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -28,7 +28,7 @@
         android:text="@string/player_1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/team_name" />
+        app:layout_constraintTop_toBottomOf="@+id/win_team" />
 
     <EditText
         android:id="@+id/player_two"
@@ -39,7 +39,7 @@
         android:ems="10"
         android:inputType="textPersonName"
         android:text="@string/player_2"
-        app:layout_constraintStart_toStartOf="@+id/team_name"
+        app:layout_constraintStart_toStartOf="@+id/win_team"
         app:layout_constraintTop_toBottomOf="@+id/player_one" />
 
     <Button
