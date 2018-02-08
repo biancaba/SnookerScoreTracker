@@ -12,12 +12,14 @@ public class Team implements Serializable{
 
     public String name;
     public int score;
+    public int streak;
     public List<Player> players;
     public int id;
 
     public Team(String teamName){
         this.name = teamName;
         this.score = 0;
+        this.streak = 0;
         this.players = new ArrayList<>();
         this.id = 0;
     }

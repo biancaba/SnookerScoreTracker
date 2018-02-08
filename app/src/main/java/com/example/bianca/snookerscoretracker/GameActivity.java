@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Pair;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.io.Serializable;
@@ -50,6 +51,7 @@ public class GameActivity extends AppCompatActivity {
 
         putNames();
         putScores();
+        putStreaks();
 
         for(int i=0; i<teams.size(); i++){
             activeTurns.add(new Pair<>(i, 0));
@@ -108,6 +110,13 @@ public class GameActivity extends AppCompatActivity {
 
         TextView p_four_view = findViewById(R.id.player_four_score);
         p_four_view.setText(String.valueOf(teams.get(1).players.get(1).score));
+    }
+
+    private void putStreaks(){
+        TextView streakView = findViewById(R.id.streak_team_one);
+        streakView.setText(String.valueOf(teams.get(0).streak));
+        streakView = findViewById(R.id.streak_team_two);
+        streakView.setText(String.valueOf(teams.get(1).streak));
     }
 
     public void onRedBallClick(View view){
@@ -226,11 +235,28 @@ public class GameActivity extends AppCompatActivity {
         int team = activePair.first;
         int player = activePair.second;
 
+        ImageView activePlayerIconView = findViewById(findImageView(team, player));
+        activePlayerIconView.setVisibility(View.INVISIBLE);
+
         player++;
         if (player == teams.get(team).players.size())
             player = 0;
-
         activeTurns.add(new Pair<>(team, player));
+
+        activePair = activeTurns.peek();
+        activePlayerIconView = findViewById(findImageView(activePair.first, activePair.second));
+        activePlayerIconView.setVisibility(View.VISIBLE);
+    }
+
+    private int findImageView(int team, int player){
+        if(team == 0 && player == 0)
+            return R.id.player_one_icon;
+        else if(team == 0 && player == 1)
+            return R.id.player_two_icon;
+        else if(team == 1 && player == 0)
+            return R.id.player_three_icon;
+        else
+            return R.id.player_four_icon;
     }
 
     public void onFoulClick(View view){

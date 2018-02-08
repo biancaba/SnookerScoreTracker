@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/wall"
     tools:context="com.example.bianca.snookerscoretracker.ResultsActivity"
     tools:layout_editor_absoluteY="81dp">
 
@@ -22,11 +23,12 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView8" />
 
     <TextView
-        android:id="@+id/win_team"
+        android:id="@+id/first_team"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
+        android:textSize="20sp"
         android:gravity="center_horizontal"
         app:layout_constraintBottom_toTopOf="@+id/score_team"
         app:layout_constraintEnd_toEndOf="@+id/winner_lable"
@@ -39,10 +41,11 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="327dp"
         android:layout_marginStart="8dp"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/win_team"
+        app:layout_constraintEnd_toEndOf="@+id/first_team"
         app:layout_constraintHorizontal_bias="0.453"
-        app:layout_constraintStart_toStartOf="@+id/win_team"
+        app:layout_constraintStart_toStartOf="@+id/first_team"
         app:layout_constraintTop_toBottomOf="@+id/imageView8" />
 
     <GridLayout
@@ -251,7 +254,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@android:drawable/star_big_off" />
+        app:srcCompat="@drawable/trophy" />
 
     <Button
         android:id="@+id/new_frame"
@@ -259,8 +262,8 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:layout_marginStart="8dp"
-        android:text="@string/new_frame"
         android:onClick="onNewFrameClick"
+        android:text="@string/new_frame"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/gridLayout3" />
 
@@ -269,8 +272,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
-        android:text="@string/exit_game"
         android:onClick="onWinExitGameClick"
+        android:text="@string/exit_game"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/gridLayout3" />
 

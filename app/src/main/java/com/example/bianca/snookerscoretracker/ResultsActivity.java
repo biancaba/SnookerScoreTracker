@@ -18,6 +18,7 @@ public class ResultsActivity extends AppCompatActivity {
     Player player2;
     Player player3;
     Player player4;
+    int bestTeamIndex;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,12 +33,15 @@ public class ResultsActivity extends AppCompatActivity {
         player2 = new Player("", -1);
         player3 = new Player("", -1);
         player4 = new Player("", -1);
+        bestTeamIndex = 0;
 
         for(int i = 0; i < teams.size(); i++){
             Team currentTeam = teams.get(i);
 
-            if(currentTeam.score > bestTeam.score)
+            if(currentTeam.score > bestTeam.score) {
                 bestTeam = currentTeam;
+                bestTeamIndex = i;
+            }
 
             for(int j = 0; j < currentTeam.players.size(); j++){
                 Player currentPlayer = currentTeam.players.get(j);
@@ -67,7 +71,7 @@ public class ResultsActivity extends AppCompatActivity {
     }
 
     private void putWinnerNames(){
-        TextView team = findViewById(R.id.win_team);
+        TextView team = findViewById(R.id.first_team);
         team.setText(bestTeam.name);
 
         TextView player = findViewById(R.id.win_player_one);
@@ -100,6 +104,17 @@ public class ResultsActivity extends AppCompatActivity {
     }
 
     public void onNewFrameClick(View view){
+        for(int i = 0; i < teams.size(); i++){
+            teams.get(i).score = 0;
+            for(int j = 0; j < teams.get(i).players.size(); j++){
+                teams.get(i).players.get(j).score = 0;
+            }
+
+            if(i == bestTeamIndex) {
+                teams.get(i).streak++;
+            }
+        }
+
         Intent intent = new Intent(this, GameActivity.class);
         intent.putExtra("game_information", (Serializable) teams);
         startActivity(intent);

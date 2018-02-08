@@ -4,17 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/wall"
     tools:context="com.example.bianca.snookerscoretracker.TeamSetupActivity">
 
     <EditText
-        android:id="@+id/win_team"
+        android:id="@+id/first_team"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="80dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="@string/team_1"
+        android:hint="@string/team_1"
+        android:text=""
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -25,30 +27,32 @@
         android:layout_marginTop="37dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="@string/player_1"
+        android:hint="@string/player_1"
+        android:text=""
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/win_team" />
+        app:layout_constraintTop_toBottomOf="@+id/first_team" />
 
     <EditText
         android:id="@+id/player_two"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="52dp"
+        android:layout_marginEnd="1dp"
         android:layout_marginTop="20dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="@string/player_2"
-        app:layout_constraintStart_toStartOf="@+id/win_team"
+        android:hint="@string/player_2"
+        android:text=""
+        app:layout_constraintEnd_toEndOf="@+id/player_one"
         app:layout_constraintTop_toBottomOf="@+id/player_one" />
 
     <Button
         android:id="@+id/next_team"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:text="@string/next_team"
+        android:layout_marginStart="84dp"
         android:onClick="onNextTeamClick"
+        android:text="@string/next_team"
         app:layout_constraintBottom_toBottomOf="@+id/finish_setup"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/finish_setup"
@@ -60,9 +64,9 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="61dp"
         android:layout_marginEnd="86dp"
+        android:onClick="onFinishSetupClick"
         android:text="@string/finish_setup"
         android:visibility="invisible"
-        android:onClick="onFinishSetupClick"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 

@@ -5,7 +5,7 @@
     <string name="single_game">2 PLayers</string>
     <string name="team_game">4 PLayers</string>
 
-    <string name="team_1">Team 1</string>
+    <string name="team_1">Team name</string>
     <string name="team_2">Team 2</string>
     <string name="player_1">Player 1</string>
     <string name="player_2">Player 2</string>
@@ -19,5 +19,10 @@
     <string name="end_frame">END FRAME</string>
     <string name="new_frame">NEW FRAME</string>
     <string name="exit_game">EXIT GAME</string>
+
+    <string name="name">NAME</string>
+    <string name="score">SCORE</string>
+
+    <string name="begin">BEGIN</string>
 
 </resources>
