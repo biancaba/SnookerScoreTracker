@@ -53,7 +53,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="31dp"
         android:fontFamily="@font/lemon"
-        android:text="SNACK"
+        android:text="@string/game_name"
         android:textSize="50sp"
         app:layout_constraintBottom_toTopOf="@+id/title"
         app:layout_constraintEnd_toEndOf="@+id/title"

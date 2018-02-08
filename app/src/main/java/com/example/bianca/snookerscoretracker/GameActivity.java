@@ -166,7 +166,10 @@ public class GameActivity extends AppCompatActivity {
             default:
                 changeScore(activeBall+1);
                 balls.get(activeBall).quantity--;
-                disableOneBall(activeBall);
+
+                for(int i = 0; i < balls.size(); i++)
+                    disableOneBall(i);
+
                 activeBall++;
                 if(activeBall < 7)
                     enableOneBall(activeBall);
@@ -246,6 +249,15 @@ public class GameActivity extends AppCompatActivity {
         activePair = activeTurns.peek();
         activePlayerIconView = findViewById(findImageView(activePair.first, activePair.second));
         activePlayerIconView.setVisibility(View.VISIBLE);
+
+        if(activeBall == 0){
+            for (int i = 0; i < balls.size(); i++) {
+                enableOneBall(i);
+            }
+        }
+        else {
+            enableOneBall(activeBall);
+        }
     }
 
     private int findImageView(int team, int player){

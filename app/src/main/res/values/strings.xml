@@ -24,5 +24,6 @@
     <string name="score">SCORE</string>
 
     <string name="begin">BEGIN</string>
+    <string name="game_name">Snooker4</string>
 
 </resources>
